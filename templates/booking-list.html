@@ -1,0 +1,102 @@
+{% extends "layout.html" %} {% block title %}Room Scheduler | Booking List{%
+endblock %} {% block content %}
+<style>
+  body {
+    font-family: "Nunito", sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+  }
+  .container {
+    width: 100%;
+    max-width: 900px;
+    margin: auto;
+    padding-top: 2%;
+  }
+  .home-button {
+    background-color: #495057;
+    color: #ffffff;
+    float: right;
+    margin-top: 1%;
+    margin-bottom: 1rem;
+  }
+  .text-center {
+    color: #495057;
+    margin-bottom: 20px;
+  }
+  .table {
+    margin-top: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  thead {
+    background-color: #495057;
+    color: #ffffff;
+  }
+  .btn-outline-primary,
+  .btn-outline-danger {
+    border-radius: 4px;
+    padding: 5px 10px;
+  }
+  .btn-outline-primary {
+    color: #007bff;
+    border-color: #007bff;
+  }
+  .btn-outline-primary:hover {
+    background-color: #007bff;
+    color: white;
+  }
+  .btn-outline-danger {
+    color: #dc3545;
+    border-color: #dc3545;
+  }
+  .btn-outline-danger:hover {
+    background-color: #dc3545;
+    color: white;
+  }
+</style>
+<div class="container">
+  <a href="/" class="btn btn-dark home-button">Home</a>
+  <h3 class="text-center">Booking List</h3>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Sr. No.</th>
+        <th scope="col">Customer Name</th>
+        <th scope="col">Room No.</th>
+        <th scope="col">Start Date</th>
+        <th scope="col">Start Time</th>
+        <th scope="col">End Date</th>
+        <th scope="col">End Time</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for booking in bookings %}
+      <tr>
+        <td>{{ loop.index }}</td>
+        <td>{{ booking.customer_name }}</td>
+        <td>{{ booking.room_name }}</td>
+        <td>{{ booking.start_date }}</td>
+        <td>{{ booking.start_time }}</td>
+        <td>{{ booking.end_date }}</td>
+        <td>{{ booking.endtime }}</td>
+        <td>
+          <button
+            onclick="location.href='/edit/booking/{{ booking.id }}'"
+            class="btn btn-outline-primary btn-rounded"
+          >
+            Edit
+          </button>
+          <button
+            onclick="deleteBooking('{{ booking.id }}')"
+            class="btn btn-outline-danger btn-rounded"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
