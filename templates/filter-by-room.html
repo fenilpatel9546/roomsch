@@ -1,0 +1,72 @@
+{% extends "layout.html" %} {% block title %}Room Scheduler | Filter By Room{%
+endblock %} {% block content %}
+<style>
+
+  body {
+    font-family: "Nunito", sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 800px; 
+    margin: auto;
+    padding-top: 2%;
+  }
+
+  .btn-dark {
+    background-color: #343a40;
+    color: #ffffff;
+  }
+
+  .text-center {
+    color: #343a40;
+  }
+
+  .table {
+    margin-top: 20px;
+  }
+
+  .table th,
+  .table td {
+    vertical-align: middle;
+    text-align: center;
+    padding: 8px;
+    margin-bottom: 5px;
+  }
+
+  .table tbody tr:hover {
+    background-color: #f8f9fa;
+  }
+</style>
+<div class="container">
+  <a href="/" class="btn btn-dark" style="float: right; margin-top: 1%">Home</a
+  ><br />
+  <h3 class="text-center">Filter by Room</h3>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Sr. No.</th>
+        <th>Customer name</th>
+        <th>Start date</th>
+        <th>Start time</th>
+        <th>End date</th>
+        <th>End time</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for booking in bookings %}
+      <tr>
+        <td>{{ loop.index }}</td>
+        <td>{{ booking.customer_name }}</td>
+        <td>{{ booking.start_date }}</td>
+        <td>{{ booking.start_time }}</td>
+        <td>{{ booking.end_date }}</td>
+        <td>{{ booking.endtime }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
