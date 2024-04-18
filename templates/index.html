@@ -1,0 +1,154 @@
+{% extends "layout.html" %} {% block title %}Room Scheduler | Home{% endblock %}
+{% block content %}
+<style>
+  #login-box {
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    width: 300px;
+  }
+  h3 {
+    color: #333;
+    text-decoration: none;
+    margin-bottom: 20px;
+  }
+  .form-group label {
+    color: #666;
+    display: block;
+    margin-bottom: 5px;
+  }
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  .form-control:focus {
+    outline: none;
+    border-color: #0056b3;
+    box-shadow: 0 0 8px rgba(0, 86, 179, 0.2);
+  }
+  .btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .btn-warning {
+    background-color: #ffc107;
+    color: white;
+  }
+  .btn-warning:hover {
+    background-color: #e0a800;
+  }
+  .d-flex {
+    display: flex;
+    justify-content: center;
+  }
+  .me-2 {
+    margin-right: 8px;
+  }
+  .container {
+    width: 100%;
+    max-width: 960px;
+  }
+
+  .btn-outline-light {
+    color: #f8f9fa;
+    border-color: #f8f9fa;
+  }
+
+  .btn-outline-light:hover {
+    background-color: #f8f9fa;
+    color: #343a40;
+  }
+
+  .btn-warning {
+    background-color: #ffc107;
+    color: white;
+    width: 100%;
+  }
+
+  .btn-warning:hover {
+    background-color: #e0a800;
+  }
+
+  .row-cols-1 .col-md-4 {
+    display: flex;
+    justify-content: center;
+  }
+
+  .fs-4 {
+    margin-top: 20px;
+  }
+
+  .text-end {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 15px;
+  }
+</style>
+<div id="login-box">
+  <h3 class="text-center">Login / Signup</h3>
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" class="form-control" required />
+  </div>
+  <br />
+  <div class="form-group">
+    <label for="password">Password:</label>
+    <input
+      type="password"
+      id="password"
+      name="password"
+      class="form-control"
+      required
+    />
+  </div>
+  <br />
+  <div class="d-flex justify-content-center">
+    <button id="login" class="btn btn-warning me-2">Login</button>
+    <button id="sign-up" class="btn btn-warning">Sign Up</button>
+  </div>
+</div>
+{% if user_token %}
+<div class="container mt-5">
+  <div class="text-end mb-4">
+    <button id="sign-out" class="btn btn-dark">Sign Out</button>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <p class="fs-4 text-center text-light">Welcome, {{ user_token.email }}</p>
+    </div>
+  </div>
+  <div class="row row-cols-1 mt-4 g-4 justify-content-center">
+    <div class="col-md-4">
+      <a href="/add/room" class="btn btn-warning btn-lg btn-block">Add Room</a>
+    </div>
+    <div class="col-md-4">
+      <a href="/list/room" class="btn btn-warning btn-lg btn-block"
+        >Rooms List</a
+      >
+    </div>
+    <div class="col-md-4">
+      <a href="/list/booking" class="btn btn-warning btn-lg btn-block"
+        >List Booking</a
+      >
+    </div>
+    <div class="col-md-4">
+      <a href="/filter/booking" class="btn btn-warning btn-lg btn-block"
+        >Filter Booking</a
+      >
+    </div>
+    <div class="col-md-4">
+      <a href="/add/booking" class="btn btn-warning btn-lg btn-block"
+        >Add Booking</a
+      >
+    </div>
+  </div>
+</div>
+{% endif %} {% endblock %}
