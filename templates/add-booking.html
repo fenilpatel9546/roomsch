@@ -1,0 +1,137 @@
+{% extends "layout.html" %} {% block title %}Room Scheduler | Add Booking{%
+endblock %} {% block content %}
+<style>
+  body {
+    font-family: "Nunito", sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 600px;
+    margin: 5% auto;
+    padding: 0 15px;
+  }
+
+  .btn-dark {
+    background-color: #343a40;
+    color: #ffffff;
+  }
+
+  .btn-dark:hover {
+    background-color: #1d2124;
+  }
+
+  .btn-warning {
+    background-color: #ffc107;
+    border: none;
+    color: #343a40;
+    font-weight: bold;
+  }
+
+  .btn-warning:hover {
+    background-color: #e0a800;
+    color: white;
+  }
+
+  .card {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+
+  .text-center {
+    text-align: center;
+    color: #343a40;
+  }
+
+  .form-group label {
+    color: #343a40;
+    margin-bottom: 5px;
+  }
+
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+</style>
+<div class="container">
+  <a href="/" class="btn btn-dark float-right mt-2">Home</a>
+  <div class="row mt-3">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+      <h3 class="text-center mb-4">Add Booking</h3>
+      {% if error %}
+      <div class="alert alert-danger" role="alert">{{ error }}</div>
+      {% endif %}
+      <form action="/add/booking" method="post">
+        <div class="form-group">
+          <label for="customer_name">Customer Name</label>
+          <input
+            class="form-control"
+            type="text"
+            id="customer_name"
+            name="customer_name"
+          />
+        </div>
+        <div class="form-group">
+          <label for="room">Select Room</label>
+          <select class="form-control" id="room" name="room">
+            <option value="">Select</option>
+            {% for room in rooms %}
+            <option value="{{ room.id }}">{{ room.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="start_date">Start Date</label>
+          <input
+            class="form-control"
+            type="date"
+            id="start_date"
+            name="start_date"
+          />
+        </div>
+        <div class="form-group">
+          <label for="start_time">Start Time</label>
+          <input
+            class="form-control"
+            type="time"
+            id="start_time"
+            name="start_time"
+          />
+        </div>
+        <div class="form-group">
+          <label for="end_date">End Date</label>
+          <input
+            class="form-control"
+            type="date"
+            id="end_date"
+            name="end_date"
+          />
+        </div>
+        <div class="form-group">
+          <label for="end_time">End Time</label>
+          <input
+            class="form-control"
+            type="time"
+            id="end_time"
+            name="end_time"
+          />
+        </div>
+        <input
+          type="submit"
+          value="Add Booking"
+          class="btn btn-warning btn-block mt-4"
+        />
+      </form>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+</div>
+{% endblock %}
