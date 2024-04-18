@@ -1,0 +1,89 @@
+{% extends "layout.html" %} {% block title %}Room Scheduler | Add Room{%
+endblock %} {% block content %}
+<style>
+  body {
+    font-family: "Nunito", sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+  }
+  .container {
+    width: 100%;
+    max-width: 400px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2%;
+  }
+  .card {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 10%;
+  }
+  .home-button {
+    background-color: #495057;
+    color: #ffffff;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+  }
+  .text-center {
+    color: #495057;
+    margin-bottom: 20px;
+  }
+  .form-style {
+    width: 100%;
+  }
+  .form-group label {
+    color: #495057;
+    display: block;
+    margin-bottom: 5px;
+  }
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    margin-bottom: 20px;
+  }
+  .btn-outline-warning {
+    background-color: #ffc107;
+    border: none;
+    color: #343a40;
+    font-weight: bold;
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+  }
+  .btn-outline-warning:hover {
+    background-color: #e0a800;
+    color: white;
+  }
+  @media (min-width: 768px) {
+    .container {
+      max-width: 600px;
+    }
+  }
+</style>
+<div class="container">
+  <a href="/" class="btn btn-dark home-button">Home</a>
+  <div class="card">
+    <h3 class="text-center">Add Room</h3>
+    <form action="/add/room" method="post" class="form-style">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input
+          class="form-control"
+          type="text"
+          id="name"
+          name="name"
+          required
+        />
+      </div>
+      <input type="submit" value="Add Room" class="btn btn-outline-warning" />
+    </form>
+  </div>
+</div>
+{% endblock %}
