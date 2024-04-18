@@ -1,0 +1,92 @@
+{% extends "layout.html" %}
+{% block title %}Room Scheduler | Edit Booking{% endblock %}
+{% block content %} 
+<style>
+    body {
+        font-family: 'Nunito', sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+    }
+    .container {
+        width: 100%;
+        max-width: 600px;
+        margin: auto;
+        padding-top: 2%;
+    }
+    .btn-dark {
+        background-color: #343a40;
+        color: #ffffff;
+    }
+    .text-center {
+        color: #343a40;
+        text-decoration: underline;
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .form-control {
+        border-radius: 4px;
+    }
+    .btn-outline-warning {
+        color: #ffc107;
+        border-color: #ffc107;
+        border-radius: 4px;
+        padding: 8px 16px;
+    }
+    .btn-outline-warning:hover {
+        background-color: #ffc107;
+        color: #343a40;
+    }
+    label{
+        color: black;
+    }
+</style>
+<div class="container">
+    <a href="/" class="btn btn-dark" style="float:right; margin-top:1%;">Home</a><br/>
+    <div class="row" style="margin-top:3%;">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <h3 class="text-center">Edit Booking</h3><br/>
+            {% if error %}
+                <div class="alert alert-danger" role="alert">
+                    {{ error }}
+                </div>
+            {% endif %}
+            <form action="/update/booking" method="post">
+                <input type="hidden" name="booking_id" value="{{ booking.id }}">
+                <div class="form-group">
+                    <label for="name">Customer Name</label>
+                    <input class="form-control" type="text" id="name" name="customer_name" value="{{ booking.customer_name }}">
+                </div>
+                <div class="form-group">
+                    <label for="room">Select Room</label>
+                    <select class="form-control" id="room" name="room">
+                        <option value="">Select</option>
+                        {% for room in rooms %}
+                            <option value="{{ room.id }}" {% if room.id == booking.room_id %}selected{% endif %}>{{ room.name }}</option>
+                        {% endfor %}
+                    </select>                            
+                </div>
+                <div class="form-group">
+                    <label for="start_date">Start Date</label>
+                    <input class="form-control" type="date" id="start_date" name="start_date" value="{{ booking.start_date }}">
+                </div>
+                <div class="form-group">
+                    <label for="start_time">Start Time</label>
+                    <input class="form-control" type="time" id="start_time" name="start_time" value="{{ booking.start_time }}">
+                </div>
+                <div class="form-group">
+                    <label for="end_date">End Date</label>
+                    <input class="form-control" type="date" id="end_date" name="end_date" value="{{ booking.end_date }}">
+                </div>
+                <div class="form-group">
+                    <label for="end_time">End Time</label>
+                    <input class="form-control" type="time" id="end_time" name="end_time" value="{{ booking.endtime }}">
+                </div>
+                <input type="submit" value="Edit Booking" class="btn btn-outline-warning">
+            </form>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+</div>
+{% endblock %}
