@@ -1,0 +1,95 @@
+{% extends "layout.html" %} {% block title %}Room Scheduler | Rooms List{%
+endblock %} {% block content %}
+<style>
+  body {
+    font-family: "Nunito", sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+  }
+  .container {
+    width: 100%;
+    max-width: 600px;
+    margin: auto;
+    padding-top: 2%;
+  }
+  .home-button {
+    background-color: #495057;
+    color: #ffffff;
+    float: right;
+    margin-top: 1%;
+  }
+  .text-center {
+    color: #495057;
+    margin-bottom: 20px;
+  }
+  .table {
+    margin-top: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  thead {
+    background-color: #495057;
+    color: #ffffff;
+  }
+  .btn-outline-danger {
+    color: #dc3545;
+    border-color: #dc3545;
+  }
+  .btn-outline-danger:hover {
+    background-color: #dc3545;
+    color: white;
+  }
+  .custom-button {
+    border-radius: 4px;
+    padding: 5px 10px;
+  }
+</style>
+<script>
+  function deleteRoom(roomId) {
+    if (confirm("Are you sure you want to delete this room?")) {
+      fetch(`/delete/room/${roomId}`, {
+        method: "DELETE",
+      })
+        .then((response) => {
+          if (response.ok) {
+            window.location.href = "/list_room";
+          } else {
+            console.error("Failed to delete Room");
+          }
+        })
+        .catch((error) => {
+          console.error("Error deleting Room:", error);
+        });
+    }
+  }
+</script>
+<div class="container">
+  <a href="/" class="btn btn-dark home-button">Home</a>
+  <h3 class="text-center">Room List</h3>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Sr. No.</th>
+        <th scope="col">Room Name</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for room in rooms %}
+      <tr>
+        <td>{{ loop.index }}</td>
+        <td>{{ room.name }}</td>
+        <td>
+          <button
+            onclick="deleteRoom('{{ room.id }}')"
+            class="btn btn-outline-danger btn-rounded custom-button"
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
